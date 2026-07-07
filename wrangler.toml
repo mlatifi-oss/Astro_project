@@ -1,0 +1,10 @@
+name = "my-astro-site"
+compatibility_date = "2026-07-07"
+main = "workers-site/index.js"
+
+[site]
+bucket = "./dist"
+
+# NOTE: Add your Cloudflare account details before publishing:
+# - Set `account_id` in this file or configure it via environment variables in CI.
+# - If you use Cloudflare Pages instead of Wrangler, you can ignore this file.

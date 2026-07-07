@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "deploy:wrangler": "npm run build && npx wrangler publish --site ./dist",
     "preview": "astro preview",
     "astro": "astro"
   },
