@@ -1,33 +1,21 @@
 ---
-const pageTitle = "Home";
+import BaseLayout from '../Layouts/Baselayout.astro';
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+const uniqueTags = [...new Set(allPosts.flatMap((post: any) => post.frontmatter.tags ?? []))];
+const pageTitle = "Home Page";
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-		<style>
-			nav a {
-				margin-right: 1rem;
-			}
-		</style>
-	</head>
-	<body>
-		<nav>
-			<a href="/">Home</a>
-			<a href="/about/">About</a>
-			<a href="/blog/">Blog</a>
-		</nav>
-
-		<main>
-			<h1>{pageTitle}</h1>
-			<p>Welcome to my Astro site.</p>
-			<p>This is the Home page.</p>
-		</main>
-	</body>
-</html>
-
+<BaseLayout pageTitle={pageTitle}>
+  <section class="hero">
+    <div class="hero-inner hero-grid">
+      <div class="hero-copy">
+        <div class="tags">
+          {uniqueTags.map((tag) => (
+            <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+          ))}
+        </div>
+        <h2 class="hero-sub">My awesome blog subtitle</h2>
+        <p class="hero-intro">Welcome to my latest writing, projects, and technical notes. Explore posts by tag and discover the ideas I’m sharing.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
